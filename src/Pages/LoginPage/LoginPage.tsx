@@ -2,7 +2,9 @@ import Login from "../../Components/LoginPageComponent/Login"
 
 const LoginPage = () => {
   return (
-    <Login />
+    <div>
+        <Login />
+    </div>
   )
 }
 
