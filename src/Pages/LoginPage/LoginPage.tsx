@@ -11,14 +11,9 @@ import Login from "../../Components/LoginPageComponent/Login";
 
 const LoginPage:React.FC = () => {
 
-  const [forgotClick , setForgotClicked] = useState<boolean>(false);
 
-  function handleForgot(){
-
-  }
   return (
         <div className={style.bannerContainer}>
-          <div>
               <LazyImage src={bannerImg} alt="banner-img" width="100%" />
               <Typography variant="h3" className={style.bannerHeading}>
                   Enjoy the <span className={style.spanHeading}>Cyber Security</span> <br/> Experience
@@ -31,10 +26,9 @@ const LoginPage:React.FC = () => {
                   <Link to="/" className={style.buttons}><CircleIcon style={{fontSize : "10px" , marginRight : "15px"}} />Email Security</Link>
                   <Link to="/" className={style.buttons}><CircleIcon style={{fontSize : "10px" , marginRight : "15px"}} />Mobile Security</Link>
               </div>
-              <Login forgotClick={() => handleForgot()}/>
-          </div>
+             <Login />
       </div>
   )
 }
 
-export default LoginPage
+export default LoginPage;
