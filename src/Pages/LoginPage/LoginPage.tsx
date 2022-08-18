@@ -8,6 +8,7 @@ import style from './LoginPage.module.css';
 
 
 import Login from "../../Components/LoginPageComponent/Login";
+import ForgotPassword from "../../Components/LoginPageComponent/ForgotPassword";
 
 const LoginPage:React.FC = () => {
 
@@ -26,7 +27,8 @@ const LoginPage:React.FC = () => {
                   <Link to="/" className={style.buttons}><CircleIcon style={{fontSize : "10px" , marginRight : "15px"}} />Email Security</Link>
                   <Link to="/" className={style.buttons}><CircleIcon style={{fontSize : "10px" , marginRight : "15px"}} />Mobile Security</Link>
               </div>
-             <Login />
+             {/* <Login /> */}
+             <ForgotPassword />
       </div>
   )
 }
