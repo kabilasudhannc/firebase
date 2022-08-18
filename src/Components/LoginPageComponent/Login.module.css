@@ -1,0 +1,18 @@
+@import "../../GlobalStyles/GlobalFonts.css";
+
+.formbox{
+    width: 493px;
+    transform: translateY(-40%);
+    top: 400px;
+    margin: 0 auto;
+    background: #ffffff;
+    box-shadow: 0px -1px 49px -1px rgb(196 196 196 / 35%);
+    border-radius: 28px;
+    padding: 20px;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+.loginForm{
+    width: 100%;
+}
