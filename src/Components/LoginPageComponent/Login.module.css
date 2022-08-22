@@ -33,11 +33,11 @@ body{
 }
 
 .forgotPassword{
-    display: block;
+    display: inline-block;
     font-weight: 700;
     font-size: 16px;
     margin: 10px 0;
-    text-align: end;
+    float : right;
     cursor:pointer;
 }
 
@@ -65,6 +65,7 @@ body{
 
 .instruction{
     box-sizing: border-box;
-    padding-left: 40px;
+    padding:0 40px;
     margin: 20px 20px;
+    text-align: center;
 }

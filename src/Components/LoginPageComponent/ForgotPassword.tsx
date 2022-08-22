@@ -30,7 +30,7 @@ const ForgotPassword = (props : Props) => {
                 <LazyImage src={logo} width="150" height="80" alt="logo" />
               </Box>
               <Typography className={style.instruction}>
-                  Type in Your Email Address To Recieve Email Reset Instructions.
+                  Type in Your Email Address To Recieve Password Reset Instructions.
               </Typography>
               <Formik
                   initialValues={initialValues}

@@ -24,14 +24,14 @@ const LoginPage:React.FC = () => {
               <Typography variant="h3" className={style.bannerHeading}>
                   Enjoy the <span className={style.spanHeading}>Cyber Security</span> <br/> Experience
               </Typography>
-              <div className={style.buttonFlex}>
+              <Box component="div" className={style.buttonFlex}>
                   <Link to="/" className={style.buttons}><CircleIcon style={{fontSize : "10px" , marginRight : "15px"}} /> Attack Surface</Link>
                   <Link to="/" className={style.buttons}><CircleIcon style={{fontSize : "10px" , marginRight : "15px"}} />Breach Notifcation</Link>
                   <Link to="/" className={style.buttons}><CircleIcon style={{fontSize : "10px" , marginRight : "15px"}} />DarkWeb Monitoring</Link>
                   <Link to="/" className={style.buttons}><CircleIcon style={{fontSize : "10px" , marginRight : "15px"}} />Brand Monitoring</Link>
                   <Link to="/" className={style.buttons}><CircleIcon style={{fontSize : "10px" , marginRight : "15px"}} />Email Security</Link>
                   <Link to="/" className={style.buttons}><CircleIcon style={{fontSize : "10px" , marginRight : "15px"}} />Mobile Security</Link>
-              </div>
+              </Box>
              {step === 1 && <Login  forgotClick={handleStep}/>}
              {step === 2 && <ForgotPassword forgotClick={handleStep}/>}
       </Box>

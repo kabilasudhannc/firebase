@@ -7,6 +7,7 @@ import LazyImage from '../../Utils/LazyImage';
 import LoginIcon from '@mui/icons-material/Login';
 import style from './Login.module.css';
 import { useEffect, useState } from 'react';
+import CircularProgress from '@mui/material/CircularProgress'
 import axios from 'axios';
 import {apiConfig} from '../../Constants/Constant';
 
@@ -34,6 +35,7 @@ const validationSchema = Yup.object({
 const Login = (props : Props) => {
 
     const [loginData , setLoginData] = useState<object>({});
+    const [loading , setLoading] = useState<boolean>(false);
 
     return (
 
@@ -47,8 +49,9 @@ const Login = (props : Props) => {
             <Formik
                 initialValues={initialValues}
                 validationSchema={validationSchema}
-                onSubmit={(values , formikHelpers) => {
-                    axios({
+                onSubmit={ async (values , formikHelpers) => {
+                    setLoading(true);
+                   await axios({
                         method : "post",
                         url : `${apiConfig?.loginRequest}`,
                         headers: { "Content-Type": "application/json"},
@@ -57,8 +60,14 @@ const Login = (props : Props) => {
                             password : values.password,
                         }
                         
-                    }).then(res => console.log(res.data))
-                    .catch(err => console.log(err))
+                    }).then(res => {
+                        setLoading(false);
+                        console.log(res)
+                    })
+                    .catch(err => {
+                        setLoading(false);
+                        console.log(err)
+                    })
 
                 }}
             >
@@ -93,12 +102,13 @@ const Login = (props : Props) => {
                         </Box>
                         <Typography className={style.forgotPassword} onClick={props.forgotClick}>Forgot Password ?</Typography>
                         <Button variant="contained"
-                            endIcon={<LoginIcon />}
                             fullWidth
                             className={style.signIn}
                             disabled={!dirty || !isValid}
                             type="submit"
-                        >Sign In</Button>
+                        >{loading === true ? <CircularProgress size="1.65rem" sx={{
+                            color : "white",
+                        }}/> : (<><span>Sign In</span> <LoginIcon /></>)} </Button>
                     </Form>
 
                 )}
