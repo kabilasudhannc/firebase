@@ -5,6 +5,7 @@ type _Props = {
     height? : any,
     src? : any,
     width? : any,
+
 };
 
 const LazyImage = ( image : _Props ) => (
@@ -14,6 +15,7 @@ const LazyImage = ( image : _Props ) => (
       height={image.height}
       src={image.src}
       width={image.width} />
+
 );
 
 export default LazyImage;

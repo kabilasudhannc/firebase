@@ -1,32 +1,39 @@
 import Box from '@mui/material/Box';
-import { Formik, Form, Field } from 'formik';
-import { Button, TextField } from '@mui/material';
+import { Formik, Form, Field , ErrorMessage } from 'formik';
+import { Button, TextField, Typography } from '@mui/material';
 import * as Yup from 'yup';
 import logo from '../../Assets/LoginPage/imageLogo.svg';
 import LazyImage from '../../Utils/LazyImage';
 import LoginIcon from '@mui/icons-material/Login';
 import style from './Login.module.css';
+import { useEffect, useState } from 'react';
+import axios from 'axios';
+import {apiConfig} from '../../Constants/Constant';
 
 
-const Login = () => {
+type Props = {
+    forgotClick : any,
+}
 
-    const initialValues = {
-        email: "",
-        password: "",
-    }
+const initialValues = {
+    email: "",
+    password: "",
+}
 
-    const validationSchema = Yup.object({
-        email: Yup.string().email("Invalid Email Address").required("Required"),
-        password: Yup.string()
-            .required('No password provided.')
-            .min(8, 'Password is too short - should be 8 chars minimum.')
-            .matches(/[a-zA-Z]/, 'Password can only contain Latin letters.'),
-    })
+const validationSchema = Yup.object({
+    email: Yup.string()
+        .email("Invalid email address")
+        .required("Please enter an email address"),
+    password: Yup.string()
+        .required('No password provided')
+        .min(4, 'Password is too short - should be 4 chars minimum')
+})
 
-    function handleSubmit() {
 
 
-    }
+const Login = (props : Props) => {
+
+    const [loginData , setLoginData] = useState<object>({});
 
     return (
 
@@ -34,33 +41,64 @@ const Login = () => {
             component="div"
             className={style.formbox}
         >
-            <LazyImage src={logo} width="150" height="80" alt="logo" />
+            <Box component="div" className={style.imageBox}>
+                <LazyImage src={logo} width="150" height="80" alt="logo" />
+            </Box>
             <Formik
                 initialValues={initialValues}
                 validationSchema={validationSchema}
-                onSubmit={() => handleSubmit()}
+                onSubmit={(values , formikHelpers) => {
+                    axios({
+                        method : "post",
+                        url : `${apiConfig?.loginRequest}`,
+                        headers: { "Content-Type": "application/json"},
+                        data : {
+                            email : values.email,
+                            password : values.password,
+                        }
+                        
+                    }).then(res => console.log(res.data))
+                    .catch(err => console.log(err))
+
+                }}
             >
-                {({ setFieldValue, values }) => (
+                {({errors , isValid , touched , dirty}) => (
                     <Form className={style.loginForm}>
                         <Field
-                            component={TextField}
+                            as={TextField}
+                            type="email"
                             name="email"
                             label="Email Address"
                             variant="outlined"
                             fullWidth
                             className={style.textField}
                             style={{ marginTop: "0" }}
+                            error = {Boolean(errors.email) && Boolean(touched.email)}
                         />
+                        <Box className={style.errorText}>
+                            <ErrorMessage name="email" />
+                        </Box>
                         <Field
-                            component={TextField}
+                            as={TextField}
+                            type="password"
                             name="password"
                             label="Password"
                             variant="outlined"
                             fullWidth
                             className={style.textField}
+                            error={Boolean(errors.password) && Boolean(touched.password)}
                         />
-                        <p className={style.forgotPassword}>Forgot Password ?</p>
-                        <Button variant="contained" endIcon={<LoginIcon />} fullWidth className={style.signIn} >Sign In</Button>
+                        <Box className={style.errorText}>
+                            <ErrorMessage name="password" />
+                        </Box>
+                        <Typography className={style.forgotPassword} onClick={props.forgotClick}>Forgot Password ?</Typography>
+                        <Button variant="contained"
+                            endIcon={<LoginIcon />}
+                            fullWidth
+                            className={style.signIn}
+                            disabled={!dirty || !isValid}
+                            type="submit"
+                        >Sign In</Button>
                     </Form>
 
                 )}

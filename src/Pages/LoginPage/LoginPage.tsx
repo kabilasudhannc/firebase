@@ -1,9 +1,9 @@
-import { Typography } from "@mui/material"
+import { Typography , Box } from "@mui/material"
 import bannerImg from '../../Assets/LoginPage/Vector_2677 2.svg';
 import LazyImage from "../../Utils/LazyImage";
 import {Link} from 'react-router-dom';
 import CircleIcon from '@mui/icons-material/Circle';
-import {useState} from 'react';
+import React, {HtmlHTMLAttributes, useState} from 'react';
 import style from './LoginPage.module.css';
 
 
@@ -12,9 +12,14 @@ import ForgotPassword from "../../Components/LoginPageComponent/ForgotPassword";
 
 const LoginPage:React.FC = () => {
 
+    const [step , setStep] = useState<number>(1);
+
+    const handleStep=(event : React.ChangeEventHandler<HTMLInputElement>) => {
+        step === 1 ? setStep(2) : setStep(1);
+    }
 
   return (
-        <div className={style.bannerContainer}>
+        <Box component= "div" className={style.bannerContainer}>
               <LazyImage src={bannerImg} alt="banner-img" width="100%" />
               <Typography variant="h3" className={style.bannerHeading}>
                   Enjoy the <span className={style.spanHeading}>Cyber Security</span> <br/> Experience
@@ -27,9 +32,9 @@ const LoginPage:React.FC = () => {
                   <Link to="/" className={style.buttons}><CircleIcon style={{fontSize : "10px" , marginRight : "15px"}} />Email Security</Link>
                   <Link to="/" className={style.buttons}><CircleIcon style={{fontSize : "10px" , marginRight : "15px"}} />Mobile Security</Link>
               </div>
-             {/* <Login /> */}
-             <ForgotPassword />
-      </div>
+             {step === 1 && <Login  forgotClick={handleStep}/>}
+             {step === 2 && <ForgotPassword forgotClick={handleStep}/>}
+      </Box>
   )
 }
 
