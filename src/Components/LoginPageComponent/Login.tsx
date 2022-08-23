@@ -6,10 +6,11 @@ import logo from '../../Assets/LoginPage/imageLogo.svg';
 import LazyImage from '../../Utils/LazyImage';
 import LoginIcon from '@mui/icons-material/Login';
 import style from './Login.module.css';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import CircularProgress from '@mui/material/CircularProgress'
 import axios from 'axios';
 import {apiConfig} from '../../Constants/Constant';
+import {useNavigate} from 'react-router-dom';
 
 
 type Props = {
@@ -34,8 +35,8 @@ const validationSchema = Yup.object({
 
 const Login = (props : Props) => {
 
-    const [loginData , setLoginData] = useState<object>({});
     const [loading , setLoading] = useState<boolean>(false);
+    const navigate = useNavigate();
 
     return (
 
@@ -62,7 +63,8 @@ const Login = (props : Props) => {
                         
                     }).then(res => {
                         setLoading(false);
-                        console.log(res)
+                        window.localStorage.setItem("token" ,JSON.stringify(res.data));
+                        navigate("/home");
                     })
                     .catch(err => {
                         setLoading(false);
@@ -83,6 +85,7 @@ const Login = (props : Props) => {
                             className={style.textField}
                             style={{ marginTop: "0" }}
                             error = {Boolean(errors.email) && Boolean(touched.email)}
+                            gutterBottom={true}
                         />
                         <Box className={style.errorText}>
                             <ErrorMessage name="email" />
@@ -96,11 +99,12 @@ const Login = (props : Props) => {
                             fullWidth
                             className={style.textField}
                             error={Boolean(errors.password) && Boolean(touched.password)}
+                            gutterBottom={true}
                         />
                         <Box className={style.errorText}>
                             <ErrorMessage name="password" />
                         </Box>
-                        <Typography className={style.forgotPassword} onClick={props.forgotClick}>Forgot Password ?</Typography>
+                        <Typography className={style.forgotPassword} onClick={props.forgotClick} gutterBottom={true}>Forgot Password ?</Typography>
                         <Button variant="contained"
                             fullWidth
                             className={style.signIn}
