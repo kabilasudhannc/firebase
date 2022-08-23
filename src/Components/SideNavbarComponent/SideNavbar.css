@@ -121,7 +121,12 @@
 	position: absolute;
 	bottom: 0;
 	grid-template-rows: 1fr;
-	grid-template-columns: 2fr 1fr;
+	grid-template-columns: 1fr 1fr;
+}
+
+.nav-footer-info{
+	display: flex;
+	align-items: center;
 }
 
 .nav-details {
@@ -133,14 +138,14 @@
 }
 
 .nav-footer-user-name {
-	font-size: 18px;
+	font-size: 14px;
 	font-weight: 900;
 }
 
-.nav-footer-user-position {
+/* .nav-footer-user-position {
 	margin-top: -15px;
 	color: var(--gray);
-}
+} */
 .logout-icon {
 	width: 30px;
 	margin: auto;

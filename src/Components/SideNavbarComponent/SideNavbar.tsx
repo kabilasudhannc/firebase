@@ -99,8 +99,8 @@ const SideNavbar = () => {
 							alt=""
 						/>
 						<div className="nav-footer-info">
-							<p className="nav-footer-user-name">M Showkat</p>
-							<p className="nav-footer-user-position">store admin</p>
+							<p className="nav-footer-user-name">Logout</p>
+							{/* <p className="nav-footer-user-position">store admin</p> */}
 						</div>
 					</div>
 				)}

@@ -11,6 +11,8 @@ type Props = {
     forgotClick?: any,
 }
 
+
+
 const ForgotPassword = (props : Props) => {
 
     const initialValues = {
