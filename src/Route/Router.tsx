@@ -9,8 +9,7 @@ import CircularLoading from'./CircularLoading';
 //imports lazy-----------
 const LoginPage = lazy(() => import("../Pages/LoginPage/LoginPage"));
 const HomePage = lazy(() => import("../Pages/Homepage/HomePage"));
-const SideNavbar = lazy(() => import("../Components/SideNavbarComponent/SideNavbar"));
-
+const Dashboard = lazy(() => import("../Pages/Dashboard/DashboardPage"));
 //----------------
 
 const Router = () => {
@@ -25,7 +24,18 @@ const Router = () => {
           <Suspense fallback={<CircularLoading />} >
               <HomePage />
           </Suspense>
-        } />
+        } >
+            <Route path="dashboard" element={
+              <Suspense fallback={<CircularLoading />}>
+                <Dashboard />
+              </Suspense>
+            } />
+            <Route path="admin" element={
+              <Suspense fallback={<CircularLoading />}>
+                <Dashboard />
+              </Suspense>
+            } />
+        </Route>
     </Routes>
   )
 }

@@ -5,7 +5,7 @@ import alignJustify from '../../Assets/Icons/align-justify.svg';
 import folder from '../../Assets/Icons/folder.svg';
 import grid from '../../Assets/Icons/grid.svg';
 import heart from '../../Assets/Icons/heart.svg';
-import Logo from '../../Assets/Icons/Logo.svg';
+import Logo from '../../Assets/LoginPage/imageLogo.svg';
 import logout from '../../Assets/Icons/logout.svg';
 import message from '../../Assets/Icons/message.svg';
 import pieChart from '../../Assets/Icons/pie-chart.svg';
@@ -13,6 +13,7 @@ import search from '../../Assets/Icons/search.svg';
 import settings from '../../Assets/Icons/settings.svg';
 import shoppingCart from '../../Assets/Icons/shopping-cart.svg';
 import user from '../../Assets/Icons/user.svg';
+import LazyImage from "../../Utils/LazyImage";
 
 
 const SideNavbar = () => {
@@ -63,8 +64,7 @@ const SideNavbar = () => {
 				<div className="nav-heading">
 					{isExpanded && (
 						<div className="nav-brand">
-							<img src={Logo} alt="" />
-							<h2>Showkart</h2>
+							<LazyImage src={Logo} alt="" width="150px" height="80px"  />
 						</div>
 					)}
 					<button
